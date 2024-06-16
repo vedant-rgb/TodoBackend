@@ -57,6 +57,6 @@ mongoose.connect(process.env.MONGODB_URL as string).then(() => {
 
 
 app.use("/",router);
-app.listen(8080,()=>{
-    console.log("Server Running at 8080");
+app.listen(process.env.PORT || 8080,()=>{
+    console.log("Server Running at 3000");
 })
