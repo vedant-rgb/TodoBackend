@@ -101,10 +101,11 @@ router.delete("/delete",async(req,res)=>{
 router.put("/update",async(req,res)=>{
 
     const filter={
-        title:req.body.title,
+        id:req.body.id,
     }
 
     const updatedData={
+        title:req.body.title,
         description:req.body.description
     }
         
