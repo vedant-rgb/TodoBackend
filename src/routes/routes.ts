@@ -80,21 +80,35 @@ router.get("/",async(req,res)=>{
 });
 
 //DELETE REQUEST
-router.delete("/delete",async(req,res)=>{
+// router.delete("/delete",async(req,res)=>{
 
-    const filter={
-        id:req.body.id,
-    }
+//     const filter={
+//         id:req.body.id,
+//     }
         
-    const dataItem = await Todo.deleteOne(filter).then((data)=>
-        res.json({
-            data:data,
-        })
-    ).catch((error)=>{
-        return res.send(error);
-    });
+//     const dataItem = await Todo.deleteOne(filter).then((data)=>
+//         res.json({
+//             data:data,
+//         })
+//     ).catch((error)=>{
+//         return res.send(error);
+//     });
 
-});
+// });
+router.delete("/delete/:id", async (req, res) => {
+    const filter = {
+      id: req.params.id,
+    };
+  
+    const dataItem = await Todo.deleteOne(filter).then((data) =>
+      res.json({
+        data: data,
+      })
+    ).catch((error) => {
+      return res.send(error);
+    });
+  });
+  
 
 
 //UPDATE REQUEST
