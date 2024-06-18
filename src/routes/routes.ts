@@ -126,8 +126,8 @@ router.delete("/delete/:id", async (req, res) => {
 
 
 //UPDATE REQUEST
-router.put("/update", async (req, res) => {
-    const filter = { _id: req.body.id };
+router.put("/update/:id", async (req, res) => {
+    const filter = { _id: new ObjectId(req.params.id) };
     const updatedData = {
         title: req.body.title,
         description: req.body.description
@@ -142,6 +142,7 @@ router.put("/update", async (req, res) => {
         res.send(error);
     }
 });
+
 
 
 
