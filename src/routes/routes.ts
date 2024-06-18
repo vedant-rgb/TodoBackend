@@ -49,6 +49,7 @@
 
 import express from "express";
 import { Todo } from "../models/user_models";
+import { ObjectId } from 'mongodb';
 const router=express.Router();
 
 //POST REQUEST
@@ -95,9 +96,23 @@ router.get("/",async(req,res)=>{
 //     });
 
 // });
+// router.delete("/delete/:id", async (req, res) => {
+    
+//     const filter = {
+//         _id: req.params.id,
+//     };  
+  
+//     const dataItem = await Todo.deleteOne(filter).then((data) =>
+//       res.json({
+//         data: data,
+//       })
+//     ).catch((error) => {
+//       return res.send(error);
+//     });
+//   });
 router.delete("/delete/:id", async (req, res) => {
     const filter = {
-      id: req.params.id,
+      _id: new ObjectId(req.params.id), 
     };
   
     const dataItem = await Todo.deleteOne(filter).then((data) =>
@@ -108,7 +123,6 @@ router.delete("/delete/:id", async (req, res) => {
       return res.send(error);
     });
   });
-  
 
 
 //UPDATE REQUEST
