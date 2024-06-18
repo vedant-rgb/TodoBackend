@@ -126,28 +126,23 @@ router.delete("/delete/:id", async (req, res) => {
 
 
 //UPDATE REQUEST
-router.put("/update",async(req,res)=>{
+router.put("/update", async (req, res) => {
+    const filter = { _id: req.body.id };
+    const updatedData = {
+        title: req.body.title,
+        description: req.body.description
+    };
 
-    const filter={
-        id:req.body.id,
+    try {
+        const dataItem = await Todo.findOneAndUpdate(filter, updatedData, {
+            new: true
+        });
+        res.json({ data: dataItem });
+    } catch (error) {
+        res.send(error);
     }
-
-    const updatedData={
-        title:req.body.title,
-        description:req.body.description
-    }
-        
-    const dataItem = await Todo.updateOne(filter,updatedData,{
-        new:true,
-    }).then((data)=>
-        res.json({
-            data:data,
-        })
-    ).catch((error)=>{
-        return res.send(error);
-    });
-
 });
+
 
 
 
